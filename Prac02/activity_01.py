@@ -1,6 +1,7 @@
-import sys
-
 def iterative_factorial(n):
+    if n < 0:
+        raise ValueError("Factorial must be non-negative.")
+    
     result = 1
     for i in range(n, 0, -1):
         result *= i
@@ -8,12 +9,18 @@ def iterative_factorial(n):
     return result
 
 def recursive_factorial(n):
+    if n < 0:
+        raise ValueError("Factorial must be non-negative.")
+    
     if n == 0:
         return 1
     else:
         return n * recursive_factorial(n - 1)
 
 def iterative_fibonacci(nth):
+    if nth < 0:
+        raise ValueError("Nth fibonacci must be non-negative.")
+
     previous = 0
     current = 1
     result = 0
@@ -32,6 +39,9 @@ def iterative_fibonacci(nth):
             
 
 def recursive_fibonacci(nth):
+    if nth < 0:
+        raise ValueError("Nth fibonacci must be non-negative.")
+    
     if nth == 1:
         return 0
     elif nth == 2:
@@ -39,17 +49,15 @@ def recursive_fibonacci(nth):
     else:
         return recursive_fibonacci(nth - 1) + recursive_fibonacci(nth - 2)
 
-if len(sys.argv) < 4:
-    sys.exit()
 
-if sys.argv[2] == "fa":
-    if sys.argv[3] == "i":
-        print(iterative_factorial(int(sys.argv[1])))
-    elif sys.argv[3] == "r":
-        print(recursive_factorial(int(sys.argv[1])))
+try:
+    print(iterative_factorial(100))
 
-elif sys.argv[2] == "fi":
-    if sys.argv[3] == "i":
-        print([iterative_fibonacci(i) for i in range(1, int(sys.argv[1]))])
-    elif sys.argv[3] == "r":
-        print([recursive_fibonacci(i) for i in range(1, int(sys.argv[1]))])
+    print(recursive_factorial(997)) # cannot go any higher
+
+    print(iterative_fibonacci(999))
+
+    print(recursive_fibonacci(999)) # cannot go any higher and is very slow
+
+except TypeError as e:
+    print(f"Invalid input type: {e}")
