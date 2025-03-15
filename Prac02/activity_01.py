@@ -55,9 +55,9 @@ try:
 
     print(recursive_factorial(997)) # cannot go any higher
 
-    print(iterative_fibonacci(999))
+    print(iterative_fibonacci(5))
 
-    print(recursive_fibonacci(999)) # cannot go any higher and is very slow
+    print(recursive_fibonacci(3)) # cannot go any higher and is very slow
 
 except TypeError as e:
     print(f"Invalid input type: {e}")
