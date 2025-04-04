@@ -82,11 +82,23 @@ def _execute_operation(operator, x, y):
     elif operator == "/":
         return x / y
 
-print("Enter \"q\" to quit")
-prompt = "Equation> "
-user_input = input(prompt)
+# print("Enter \"q\" to quit")
+# prompt = "Equation> "
+# user_input = input(prompt)
 
-while user_input != "q":
-    if user_input != "":
-        solve(user_input)
-    user_input = input(prompt)
+# while user_input != "q":
+#     if user_input != "":
+#         solve(user_input)
+#     user_input = input(prompt)
+
+postfix = CircularQueue(20)
+postfix.enqueue("3")
+postfix.enqueue("4")
+postfix.enqueue("*")
+postfix.enqueue("1")
+postfix.enqueue("3")
+postfix.enqueue("4")
+postfix.enqueue("-")
+postfix.enqueue("/")
+
+print(_evaluate_postfix(postfix))

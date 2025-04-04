@@ -120,14 +120,10 @@ class BinarySearchTree:
         return updated_node
     
     def _find_successor(self, current_node):
-        successor = current_node
+        while current_node.get_left() != None:
+            current_node = current_node.get_left()
 
-        if current_node.get_left() == None:
-            successor = self._find_successor(current_node.get_left())
-            if successor == current_node.get_left():
-                current_node.set_left(successor.get_right())
-
-        return successor
+        return current_node
 
     def min(self):
         current_node = self.root
@@ -176,7 +172,7 @@ class BinarySearchTree:
         else:
             return 100
     
-    def transverse_inorder(self):
+    def traverse_inorder(self):
         if self.root != None:
             self._inorder(self.root)
             print()
@@ -189,7 +185,7 @@ class BinarySearchTree:
             print(f"{current_node.get_value()}({current_node.get_key()})", end=" ")
             self._inorder(current_node.get_right())
 
-    def transverse_preorder(self):
+    def traverse_preorder(self):
         if self.root != None:
             self._preorder(self.root)
             print()
@@ -202,9 +198,9 @@ class BinarySearchTree:
             self._preorder(current_node.get_left())
             self._preorder(current_node.get_right())
 
-    def transverse_postorder(self):
+    def traverse_postorder(self):
         if self.root != None:
-            self._preorder(self.root)
+            self._postorder(self.root)
             print()
         else:
             print("The binary tree is empty!")
@@ -217,12 +213,12 @@ class BinarySearchTree:
 
 if __name__ == "__main__":
     test = BinarySearchTree()
-    test.insert(2, "Acey")
-    test.insert(1, "Disse")
-    test.insert(3, "Aris")
+    test.insert(2, "Red")
+    test.insert(1, "Blue")
+    test.insert(3, "Yellow")
     
-    test.transverse_preorder()
-    test.transverse_inorder()
-    test.transverse_postorder()
+    test.traverse_preorder()
+    test.traverse_inorder()
+    test.traverse_postorder()
     print(test.balance())
 

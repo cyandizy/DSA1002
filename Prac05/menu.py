@@ -83,11 +83,11 @@ while input_command[0] != "quit":
         if len(input_command) == 1:
             display_mode = input(display_prompt).lower();
             if display_mode == "preorder":
-                tree.transverse_preorder()
+                tree.traverse_preorder()
             elif display_mode == "inorder":
-                tree.transverse_inorder()
+                tree.traverse_inorder()
             elif display_mode == "postorder":
-                tree.transverse_postorder()
+                tree.traverse_postorder()
 
         elif len(input_command) > 1:
             print(f"Command [{input_command[0]}] has too many arguments.")
@@ -117,5 +117,3 @@ while input_command[0] != "quit":
 
     user_input = input(prompt_dialogue)
     input_command = user_input.split(" ")
-
-
