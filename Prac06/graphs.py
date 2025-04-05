@@ -141,6 +141,8 @@ class DSAGraph:
         current_vertex = vertex_list[0]
         current_vertex.set_visited()
         queue.enqueue(current_vertex)
+        
+        print("BFS = ", end="")
 
         while not queue.is_empty():
             current_vertex = queue.dequeue()
@@ -151,10 +153,7 @@ class DSAGraph:
                 if not adjacent.get_visited():
                     adjacent.set_visited()
                     queue.enqueue(adjacent)
-
-        print(f"BFS = ", end="")
-        while not traversal.is_empty():
-            print(f"{traversal.dequeue().get_label()} ", end="")
+                    print(f"{current_vertex.get_label()}{adjacent.get_label()} ", end="")
         print()
 
     def depth_first_search(self):
@@ -173,19 +172,28 @@ class DSAGraph:
         current_vertex.set_visited()
         stack.push(current_vertex)
 
-        while not stack.is_empty():
-            current_vertex = stack.pop()
-            traversal.enqueue(current_vertex)
+        print(f"DFS = ", end="")
 
-            adjacent_list = sorted(current_vertex.get_adjacent_list(), key=attrgetter("label"), reverse=True)
+        while not stack.is_empty():
+            adjacent_list = sorted(current_vertex.get_adjacent_list(), key=attrgetter("label"))
+            found_unvisited = False
+
             for adjacent in adjacent_list:
                 if not adjacent.get_visited():
+                    traversal.enqueue(current_vertex)
+                    traversal.enqueue(adjacent)
+
+                    print(f"{current_vertex.get_label()}{adjacent.get_label()} ", end="")
+
                     adjacent.set_visited()
                     stack.push(adjacent)
+                    current_vertex = adjacent
+                    found_unvisited = True
+                    
+                    break
 
-        print(f"DFS = ", end="")
-        while not traversal.is_empty():
-            print(f"{traversal.dequeue().get_label()} ", end="")
+            if not found_unvisited:
+                current_vertex = stack.pop()
         print()
 
     def delete_node(self, label):
