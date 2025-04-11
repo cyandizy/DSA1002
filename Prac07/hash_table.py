@@ -1,5 +1,4 @@
 import numpy as np
-import sys
 import math
 DEBUG = False
 
@@ -9,8 +8,8 @@ class DSAHashTable:
         self.hash_array = np.array([DSAHashEntry() for _ in range(self.table_size)], dtype=DSAHashEntry)
         self.max_step = self.get_max_step()
         self.count = 0
-        self.lf_upper = 0.7
-        self.lf_lower = 0.1
+        self.LF_UPPER = 0.7
+        self.LF_LOWER = 0.1
 
     def hash(self, key):
         hash_idx = 0
@@ -34,7 +33,7 @@ class DSAHashTable:
                     self.count += 1
                 entry.update(key, value)
                 if check_resize:
-                    if self.get_load_factor() > self.lf_upper:
+                    if self.get_load_factor() > self.LF_UPPER:
                         self.resize(self.table_size * 2)
 
                 return
@@ -68,7 +67,7 @@ class DSAHashTable:
                 entry.clear()
                 self.count -= 1
                 
-                if self.get_load_factor() < self.lf_lower:
+                if self.get_load_factor() < self.LF_LOWER:
                     self.resize(self.table_size // 2)
 
     def resize(self, size):
@@ -156,31 +155,6 @@ class DSAHashEntry:
         self.value = None
         self.state = -1 
 
-
-if __name__ == "__main__" and len(sys.argv) == 2:
-    key_list = []
-    value_list = []
-    inputfile = open(sys.argv[1], "r")
-    for line in inputfile:
-        try:
-            key, value = line.strip().split(",")
-        except ValueError:
-            print("Error: invalid format. Skipping this line.")
-            continue
-        
-        key_list.append(key)
-        value_list.append(value)
     
-    inputfile.close()
 
-    hash_table = DSAHashTable(11)
-    hash_table.get("a")
-    for key, value in zip(key_list, value_list):
-        hash_table.put(key, value)
-    
-    outputfile = open("my_hash_table.csv", "w")
-    for key in set(key_list):
-        outputfile.write(f"{key},{hash_table.get(key)}\n")
-
-    outputfile.close()
 
