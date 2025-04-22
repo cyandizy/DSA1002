@@ -1,5 +1,6 @@
 from trees import BinarySearchTree
 
+
 class Account:
     def __init__(self, number, title, balance=0):
         self.number = number
@@ -21,17 +22,33 @@ class AccountManager:
     def new_account(self, number, title):
         new_acc = Account(number, title)
         self.account_tree.insert(number, new_acc)
+        
+        added_acc = self.account_tree.find(number)
+        if added_acc is not None:
+            print("Successfully created new account.")
+        else:
+            print("Error creating the account.")
 
     def deposit(self, acc_num, amount):
         target_acc: Account = self.account_tree.find(acc_num)
-        target_acc.deposit(amount)
+        if target_acc is not None:
+            target_acc.deposit(amount)
+        else:
+            print("Account not found.")
 
     def withdraw(self, acc_num, amount):
         target_acc: Account = self.account_tree.find(acc_num)
-        target_acc.withdraw(amount)
+        if target_acc is not None:
+            target_acc.withdraw(amount)
+        else:
+            print("Account not found.")
 
     def delete_account(self, acc_num):
-        self.account_tree.delete(acc_num)
+        target_acc: Account = self.account_tree.find(acc_num)
+        if target_acc is not None:
+            self.account_tree.delete(acc_num)
+        else:
+            print("Account not found.")
 
     def search_account(self, acc_num):
         target_acc: Account = self.account_tree.find(acc_num)
@@ -42,7 +59,7 @@ class AccountManager:
                         Balance: {target_acc.balance}
                 """)
         else:
-            print("Account not found")
+            print("Account not found.")
 
     def check_balance(self, acc_num):
         target_acc: Account = self.account_tree.find(acc_num)
