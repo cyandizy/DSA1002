@@ -2,16 +2,16 @@ from trees import BinarySearchTree
 
 
 class Account:
-    def __init__(self, number, title, balance=0):
+    def __init__(self, number, title, balance=0.00):
         self.number = number
         self.title = title
-        self.balance = balance
+        self.balance = float(balance)
 
     def deposit(self, amount):
         self.balance += amount
 
     def withdraw(self, amount):
-        if self.balance - amount >= 0:
+        if self.balance - amount >= 0.00:
             self.balance -= amount
 
 
