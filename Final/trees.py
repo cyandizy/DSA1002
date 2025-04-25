@@ -182,7 +182,7 @@ class BinarySearchTree:
     def _inorder(self, current_node: TreeNode):
         if current_node != None:
             self._inorder(current_node.get_left())
-            print(f"{current_node.get_value()}({current_node.get_key()})", end=" ")
+            print(f"{current_node.get_value()}", end=" ")
             self._inorder(current_node.get_right())
 
     def traverse_preorder(self):
@@ -194,7 +194,7 @@ class BinarySearchTree:
 
     def _preorder(self, current_node: TreeNode):
         if current_node != None:
-            print(f"{current_node.get_value()}({current_node.get_key()})", end=" ")
+            print(f"{current_node.get_value()}", end=" ")
             self._preorder(current_node.get_left())
             self._preorder(current_node.get_right())
 
@@ -209,7 +209,7 @@ class BinarySearchTree:
         if current_node != None:
             self._postorder(current_node.get_left())
             self._postorder(current_node.get_right())
-            print(f"{current_node.get_value()}({current_node.get_key()})", end=" ")
+            print(f"{current_node.get_value()}", end=" ")
 
 if __name__ == "__main__":
     test = BinarySearchTree()

@@ -14,6 +14,16 @@ class Account:
         if self.balance - amount >= 0.00:
             self.balance -= amount
 
+    def __str__(self):
+        return f"""
+                        Number: {self.number}
+                        Title: {self.title}
+                        Balance: {self.balance}
+                """
+    
+    def __repr__(self):
+        self.__str__()
+
 
 class AccountManager:
     def __init__(self):
