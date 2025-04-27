@@ -2,15 +2,11 @@
 
 from account import AccountManager
 import readline # This module supports command history!!! (arrow up and down)
-import atexit
+import atexit # delete on submission
 import os
 
 
 HISTORY_FILE = os.path.expanduser("~/.my_cli_history")
-
-
-
-
 
 
 menu_dialogue = "Type \"help\" or \"h\" for the list of commands"
