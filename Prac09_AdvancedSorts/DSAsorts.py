@@ -85,34 +85,32 @@ def merge(A, leftIdx, midIdx, rightIdx):
 
 
 def quickSort(A):
-    """ quickSort - front-end for kick-starting the recursive algorithm
-    """
-    ...
+    quickSortRecurse(A, 0, len(A) - 1)
 
 def quickSortRecurse(A, leftIdx, rightIdx):
-    if (right_idx > left_idx):
-        piv_idx = (left_idx + right_idx) // 2
-        new_piv_idx = _partition(arr, left_idx, right_idx, piv_idx)
+    if (rightIdx > leftIdx):
+        piv_idx = (leftIdx + rightIdx) // 2
+        new_piv_idx = doPartitioning(A, leftIdx, rightIdx, piv_idx)
 
-        _quick_sort(arr, left_idx, new_piv_idx - 1)
-        _quick_sort(arr, new_piv_idx + 1, right_idx)
+        quickSortRecurse(A, leftIdx, new_piv_idx - 1)
+        quickSortRecurse(A, new_piv_idx + 1, rightIdx)
 
 def doPartitioning(A, leftIdx, rightIdx, pivotIdx):
-    pivValue = arr[pivotIdx]
-    arr[pivotIdx] = arr[rightIdx]
-    arr[rightIdx] = pivValue
+    pivValue = A[pivotIdx]
+    A[pivotIdx] = A[rightIdx]
+    A[rightIdx] = pivValue
 
     currentIdx = leftIdx
 
     for i in range(leftIdx, rightIdx):
-        if (arr[i] < pivValue):
-            arr[i], arr[currentIdx] = arr[currentIdx], arr[i]
+        if (A[i] < pivValue):
+            A[i], A[currentIdx] = A[currentIdx], A[i]
             
             currentIdx += 1
 
     newPivotIdx = currentIdx
-    arr[rightIdx] = arr[newPivotIdx]
-    arr[newPivotIdx] = pivValue
+    A[rightIdx] = A[newPivotIdx]
+    A[newPivotIdx] = pivValue
 
     return newPivotIdx
 
