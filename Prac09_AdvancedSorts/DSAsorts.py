@@ -5,6 +5,7 @@
 #
 
 import numpy as np
+from statistics import median
 
 
 def bubbleSort(A):
@@ -113,5 +114,55 @@ def doPartitioning(A, leftIdx, rightIdx, pivotIdx):
     A[newPivotIdx] = pivValue
 
     return newPivotIdx
+
+
+def quickSortMedian3(A):
+    quickSortRecurseMedian3(A, 0, len(A) - 1)
+
+def quickSortRecurseMedian3(A, leftIdx, rightIdx):
+    
+    if (rightIdx > leftIdx):
+        midIdx = (leftIdx + rightIdx) // 2
+        x, y, z = A[leftIdx], A[midIdx], A[rightIdx]
+        if x > y:
+            if x < z:
+                medianValue = x
+            elif y > z:
+                medianValue = y
+            else:
+                medianValue = z
+
+        else:
+            if x > z:
+                medianValue = x
+            elif y < z:
+                medianValue = y
+            else:
+                medianValue = z
+
+        if medianValue == A[leftIdx]:
+            piv_idx = leftIdx
+        elif medianValue == A[midIdx]:
+            piv_idx = midIdx
+        elif medianValue == A[rightIdx]:
+            piv_idx = rightIdx
+
+
+        new_piv_idx = doPartitioning(A, leftIdx, rightIdx, piv_idx)
+
+        quickSortRecurseMedian3(A, leftIdx, new_piv_idx - 1)
+        quickSortRecurseMedian3(A, new_piv_idx + 1, rightIdx)
+
+
+def quickSortRandom(A):
+    quickSortRecurseRandom(A, 0, len(A) - 1)
+
+def quickSortRecurseRandom(A, leftIdx, rightIdx):
+    if (rightIdx > leftIdx):
+        piv_idx = (leftIdx + rightIdx) // 2
+        new_piv_idx = doPartitioning(A, leftIdx, rightIdx, piv_idx)
+
+        quickSortRecurseRandom(A, leftIdx, new_piv_idx - 1)
+        quickSortRecurseRandom(A, new_piv_idx + 1, rightIdx)
 
 
