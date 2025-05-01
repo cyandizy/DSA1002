@@ -5,7 +5,7 @@
 #
 
 import numpy as np
-
+import random
 
 def bubbleSort(A):
     swapped = False
@@ -88,12 +88,12 @@ def quickSort(A):
     quickSortRecurse(A, 0, len(A) - 1)
 
 def quickSortRecurse(A, leftIdx, rightIdx):
-    if (rightIdx > leftIdx):
-        piv_idx = (leftIdx + rightIdx) // 2
-        new_piv_idx = doPartitioning(A, leftIdx, rightIdx, piv_idx)
+    if rightIdx > leftIdx:
+        pivIdx = (leftIdx + rightIdx) // 2
+        newPivIdx = doPartitioning(A, leftIdx, rightIdx, pivIdx)
 
-        quickSortRecurse(A, leftIdx, new_piv_idx - 1)
-        quickSortRecurse(A, new_piv_idx + 1, rightIdx)
+        quickSortRecurse(A, leftIdx, newPivIdx - 1)
+        quickSortRecurse(A, newPivIdx + 1, rightIdx)
 
 def doPartitioning(A, leftIdx, rightIdx, pivotIdx):
     pivValue = A[pivotIdx]
@@ -113,5 +113,52 @@ def doPartitioning(A, leftIdx, rightIdx, pivotIdx):
     A[newPivotIdx] = pivValue
 
     return newPivotIdx
+
+
+def quickSortMedian3(A):
+    quickSortRecurseMedian3(A, 0, len(A) - 1)
+
+def quickSortRecurseMedian3(A, leftIdx, rightIdx):
+    if rightIdx > leftIdx:
+        midIdx = (leftIdx + rightIdx) // 2
+        x, y, z = A[leftIdx], A[midIdx], A[rightIdx]
+        if x > y:
+            if x < z:
+                medianValue = x
+            elif y > z:
+                medianValue = y
+            else:
+                medianValue = z
+
+        else:
+            if x > z:
+                medianValue = x
+            elif y < z:
+                medianValue = y
+            else:
+                medianValue = z
+
+        if medianValue == A[leftIdx]:
+            pivIdx = leftIdx
+        elif medianValue == A[midIdx]:
+            pivIdx = midIdx
+        elif medianValue == A[rightIdx]:
+            pivIdx = rightIdx
+
+        newPivIdx = doPartitioning(A, leftIdx, rightIdx, pivIdx)
+
+        quickSortRecurseMedian3(A, leftIdx, newPivIdx - 1)
+        quickSortRecurseMedian3(A, newPivIdx + 1, rightIdx)
+
+def quickSortRandom(A):
+    quickSortRecurseRandom(A, 0, len(A) - 1)
+
+def quickSortRecurseRandom(A, leftIdx, rightIdx):
+    if rightIdx > leftIdx:
+        pivIdx = random.randint(leftIdx, rightIdx)
+        newPivIdx = doPartitioning(A, leftIdx, rightIdx, pivIdx)
+
+        quickSortRecurseRandom(A, leftIdx, newPivIdx - 1)
+        quickSortRecurseRandom(A, newPivIdx + 1, rightIdx)
 
 
