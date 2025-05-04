@@ -1,3 +1,5 @@
+from queues_linked import Queue
+
 class TreeNode:
     def __init__(self, key, value):
         self.key = key
@@ -173,43 +175,49 @@ class BinarySearchTree:
             return 100
     
     def traverse_inorder(self):
+        traversal = Queue()
         if self.root != None:
-            self._inorder(self.root)
-            print()
+            self._inorder(self.root, traversal)
+            return traversal
         else:
             print("The binary tree is empty!")
+            return None
 
-    def _inorder(self, current_node: TreeNode):
+    def _inorder(self, current_node: TreeNode, traversal_queue):
         if current_node != None:
-            self._inorder(current_node.get_left())
-            print(f"{current_node.get_value()}", end=" ")
-            self._inorder(current_node.get_right())
+            self._inorder(current_node.get_left(), traversal_queue)
+            traversal_queue.enqueue(current_node.get_value()) 
+            self._inorder(current_node.get_right(), traversal_queue)
 
     def traverse_preorder(self):
+        traversal = Queue()
         if self.root != None:
-            self._preorder(self.root)
-            print()
+            self._preorder(self.root, traversal)
+            return traversal
         else:
             print("The binary tree is empty!")
+            return None
 
-    def _preorder(self, current_node: TreeNode):
+    def _preorder(self, current_node: TreeNode, traversal_queue):
         if current_node != None:
-            print(f"{current_node.get_value()}", end=" ")
-            self._preorder(current_node.get_left())
-            self._preorder(current_node.get_right())
+            traversal_queue.enqueue(current_node.get_value()) 
+            self._preorder(current_node.get_left(), traversal_queue)
+            self._preorder(current_node.get_right(), traversal_queue)
 
     def traverse_postorder(self):
+        traversal = Queue()
         if self.root != None:
-            self._postorder(self.root)
-            print()
+            self._postorder(self.root, traversal)
+            return traversal
         else:
             print("The binary tree is empty!")
+            return None
 
-    def _postorder(self, current_node: TreeNode):
+    def _postorder(self, current_node: TreeNode, traversal_queue):
         if current_node != None:
-            self._postorder(current_node.get_left())
-            self._postorder(current_node.get_right())
-            print(f"{current_node.get_value()}", end=" ")
+            self._postorder(current_node.get_left(), traversal_queue)
+            self._postorder(current_node.get_right(), traversal_queue)
+            traversal_queue.enqueue(current_node.get_value()) 
 
 if __name__ == "__main__":
     test = BinarySearchTree()

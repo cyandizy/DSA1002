@@ -101,43 +101,63 @@ def main():
     while input_cmd not in cmd["quit"]:
         if input_cmd in cmd["add_account"]["aliases"]:
             if validate_args("add_account", input_args):
-                account.new_account(input_args[0], input_args[1])
-
-        elif input_cmd in cmd["add_account"]["aliases"]:
-            if validate_args("add_account", input_args):
-                account.new_account(input_args[0], input_args[1])
+                if input_args[0].isdigit():
+                    account.new_account(int(input_args[0]), input_args[1])
+                else:
+                    print("acc_num must be integer.")
 
         elif input_cmd in cmd["delete_account"]["aliases"]:
             if validate_args("delete_account", input_args):
-                account.delete_account(input_args[0])
+                if input_args[0].isdigit():
+                    account.delete_account(int(input_args[0]))
+                else:
+                    print("acc_num must be integer.")
 
         elif input_cmd in cmd["search_account"]["aliases"]:
             if validate_args("search_account", input_args):
-                account.search_account(input_args[0])
+                if input_args[0].isdigit():
+                    account.search_account(int(input_args[0]))
+                else:
+                    print("acc_num must be integer.")
 
         elif input_cmd in cmd["check_balance"]["aliases"]:
             if validate_args("check_balance", input_args):
-                account.check_balance(input_args[0])
+                if input_args[0].isdigit():
+                    account.check_balance(int(input_args[0]))
+                else:
+                    print("acc_num must be integer.")
 
         elif input_cmd in cmd["deposit"]["aliases"]:
             if validate_args("deposit", input_args):
-                account.deposit(input_args[0], float(input_args[1]))
+                if input_args[0].isdigit() and input_args[1].isdigit():
+                    account.deposit(int(input_args[0]), float(input_args[1]))
+                else:
+                    print("acc_num and amount must be numbers.")
 
         elif input_cmd in cmd["withdraw"]["aliases"]:
             if validate_args("withdraw", input_args):
-                account.deposit(input_args[0], float(input_args[1]))
+                if input_args[0].isdigit() and input_args[1].isdigit():
+                    account.deposit(int(input_args[0]), float(input_args[1]))
+                else:
+                    print("acc_num and amount must be numbers.")
 
         elif input_cmd in cmd["traverse_preorder"]["aliases"]:
             if validate_args("traverse_preorder", input_args):
-                account.traverse_preorder()
+                traversal = account.traverse_preorder()
+                while not traversal.is_empty():
+                    print(traversal.dequeue())
 
         elif input_cmd in cmd["traverse_inorder"]["aliases"]:
             if validate_args("traverse_inorder", input_args):
-                account.traverse_inorder()
+                traversal = account.traverse_inorder()
+                while not traversal.is_empty():
+                    print(traversal.dequeue())
         
         elif input_cmd in cmd["traverse_postorder"]["aliases"]:
             if validate_args("traverse_postorder", input_args):
-                account.traverse_postorder()
+                traversal = account.traverse_postorder()
+                while not traversal.is_empty():
+                    print(traversal.dequeue())
 
         elif input_cmd in cmd["help"]["aliases"]:
             print(help_text)
