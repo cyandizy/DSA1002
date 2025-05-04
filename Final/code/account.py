@@ -10,6 +10,10 @@ class Account:
     def __init__(self, number, title, balance=0.00):        
         self.title = title
         self.balance = float(balance)
+        if not isinstance(number, int):
+            raise TypeError("Account number must be number.")
+
+        self.number = number
 
         if self.balance < 0.00:
             raise ValueError("Balance cannot be negative.")
@@ -18,12 +22,18 @@ class Account:
         if isinstance(amount, str):
             raise TypeError("Amount must be numbers.") 
         
+        if amount < 0.00:
+            raise ValueError("Amount must be positive.")
+        
         self.balance += amount
 
     def withdraw(self, amount):
         if isinstance(amount, str):
             raise TypeError("Amount must be numbers.") 
         
+        if amount < 0.00:
+            raise ValueError("Amount must be positive.")
+
         if self.balance - amount >= 0.00:
             self.balance -= amount
         else:
@@ -36,6 +46,7 @@ class Account:
                         Balance: {self.balance}
                 """
     
+
     def __repr__(self):
         self.__str__()
 
@@ -57,14 +68,16 @@ class AccountManager:
         if not isinstance(number, int):
             raise TypeError("Account number must be numbers.") 
 
-        new_acc = Account(number, title)
+        new_acc = Account(number, str(title))
         self.account_tree.insert(number, new_acc)
         
         added_acc = self.account_tree.find(number)
         if added_acc is not None:
             print("Successfully created new account.")
+            return True
         else:
             print("Error creating the account.")
+            return False
 
     def deposit(self, acc_num, amount):
         """
@@ -96,10 +109,7 @@ class AccountManager:
         
         target_acc: Account = self.account_tree.find(acc_num)
         if target_acc is not None:
-            try:
-                target_acc.withdraw(amount)
-            except ValueError as e:
-                print(f"{e} Please try again.")
+            target_acc.withdraw(amount)
         else:
             print("Account not found.")
 
@@ -115,8 +125,10 @@ class AccountManager:
         target_acc: Account = self.account_tree.find(acc_num)
         if target_acc is not None:
             self.account_tree.delete(acc_num)
+            return True
         else:
             print("Account not found.")
+            return False
 
     def search_account(self, acc_num):
         """
@@ -134,8 +146,10 @@ class AccountManager:
                         Title: {target_acc.title}
                         Balance: {target_acc.balance}
                 """)
+            return True
         else:
             print("Account not found.")
+            return False
 
     def check_balance(self, acc_num):
         """
@@ -149,6 +163,7 @@ class AccountManager:
         target_acc: Account = self.account_tree.find(acc_num)
         if target_acc is not None:
             print(f"Balance: {target_acc.balance}")
+            return target_acc.balance
         else:
             print("Account not found.")
 
@@ -166,7 +181,7 @@ class AccountManager:
             returns a queue of nodes in order.
         """
 
-        return self.account_tree.traverse_preorder()
+        return self.account_tree.traverse_inorder()
 
     def traverse_postorder(self):
         """
@@ -174,7 +189,6 @@ class AccountManager:
             returns a queue of nodes in order.
         """
         
-        return self.account_tree.traverse_preorder()
+        return self.account_tree.traverse_postorder()
 
     
-        
