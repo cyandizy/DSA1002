@@ -178,10 +178,9 @@ class BinarySearchTree:
         traversal = Queue()
         if self.root != None:
             self._inorder(self.root, traversal)
-            return traversal
         else:
             print("The binary tree is empty!")
-            return None
+        return traversal
 
     def _inorder(self, current_node: TreeNode, traversal_queue):
         if current_node != None:
@@ -193,10 +192,9 @@ class BinarySearchTree:
         traversal = Queue()
         if self.root != None:
             self._preorder(self.root, traversal)
-            return traversal
         else:
             print("The binary tree is empty!")
-            return None
+        return traversal
 
     def _preorder(self, current_node: TreeNode, traversal_queue):
         if current_node != None:
@@ -208,10 +206,9 @@ class BinarySearchTree:
         traversal = Queue()
         if self.root != None:
             self._postorder(self.root, traversal)
-            return traversal
         else:
             print("The binary tree is empty!")
-            return None
+        return traversal
 
     def _postorder(self, current_node: TreeNode, traversal_queue):
         if current_node != None:

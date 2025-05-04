@@ -102,42 +102,60 @@ def main():
         if input_cmd in cmd["add_account"]["aliases"]:
             if validate_args("add_account", input_args):
                 if input_args[0].isdigit():
-                    account.new_account(int(input_args[0]), input_args[1])
+                    try:
+                        account.new_account(int(input_args[0]), input_args[1])
+                    except Exception as e:
+                        print(e)
                 else:
                     print("acc_num must be integer.")
 
         elif input_cmd in cmd["delete_account"]["aliases"]:
             if validate_args("delete_account", input_args):
                 if input_args[0].isdigit():
-                    account.delete_account(int(input_args[0]))
+                    try:
+                        account.delete_account(int(input_args[0]))
+                    except Exception as e:
+                        print(e)
                 else:
                     print("acc_num must be integer.")
 
         elif input_cmd in cmd["search_account"]["aliases"]:
             if validate_args("search_account", input_args):
                 if input_args[0].isdigit():
-                    account.search_account(int(input_args[0]))
+                    try:
+                        account.search_account(int(input_args[0]))
+                    except Exception as e:
+                        print(e)
                 else:
                     print("acc_num must be integer.")
 
         elif input_cmd in cmd["check_balance"]["aliases"]:
             if validate_args("check_balance", input_args):
                 if input_args[0].isdigit():
-                    account.check_balance(int(input_args[0]))
+                    try:
+                        account.check_balance(int(input_args[0]))
+                    except Exception as e:
+                        print(e)
                 else:
                     print("acc_num must be integer.")
 
         elif input_cmd in cmd["deposit"]["aliases"]:
             if validate_args("deposit", input_args):
                 if input_args[0].isdigit() and input_args[1].isdigit():
-                    account.deposit(int(input_args[0]), float(input_args[1]))
+                    try:
+                        account.deposit(int(input_args[0]), float(input_args[1]))
+                    except Exception as e:
+                        print(e)
                 else:
                     print("acc_num and amount must be numbers.")
 
         elif input_cmd in cmd["withdraw"]["aliases"]:
             if validate_args("withdraw", input_args):
                 if input_args[0].isdigit() and input_args[1].isdigit():
-                    account.deposit(int(input_args[0]), float(input_args[1]))
+                    try:
+                        account.withdraw(int(input_args[0]), float(input_args[1]))
+                    except Exception as e:
+                        print(e)
                 else:
                     print("acc_num and amount must be numbers.")
 
