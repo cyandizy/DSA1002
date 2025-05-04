@@ -2,6 +2,9 @@ import unittest
 from account import *
 
 class TestAccount(unittest.TestCase):
+    """
+        Test cases for all methods of Account Class
+    """
     def test_constructor(self):
         number = [1, 2, "C"]
         title = ["A", "B", "C"]
@@ -57,6 +60,9 @@ class TestAccount(unittest.TestCase):
                 self.assertEqual(expected[i], account.balance)
 
 class TestAccountManager(unittest.TestCase):
+    """
+        Test cases for all methods of AccountManager Class
+    """
     def test_new_account(self):
         number = [1, "C"]
         title = ["A", "C"]

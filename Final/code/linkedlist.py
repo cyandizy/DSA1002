@@ -1,6 +1,6 @@
 # Implemented from the pseudocode in Lecture 4
 
-class DSAListNode:
+class ListNode:
     def __init__(self, value):
         self.value = value
         self.prev = None
@@ -24,13 +24,13 @@ class DSAListNode:
     def set_next(self, next):
         self.next = next
 
-class DSALinkedList: 
+class LinkedList: 
     def __init__(self):
         self.head = None
         self.tail = None
 
     def insert_first(self, value):
-        new_node = DSAListNode(value)
+        new_node = ListNode(value)
         if self.is_empty():
             self.head = new_node
             self.tail = new_node
@@ -40,7 +40,7 @@ class DSALinkedList:
             self.head = new_node
 
     def insert_last(self, value):
-        new_node = DSAListNode(value)
+        new_node = ListNode(value)
         if self.is_empty():
             self.head = new_node
             self.tail = new_node

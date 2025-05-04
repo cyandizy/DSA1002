@@ -1,4 +1,4 @@
-from queues_linked import Queue
+from queues import Queue
 
 class TreeNode:
     def __init__(self, key, value):
