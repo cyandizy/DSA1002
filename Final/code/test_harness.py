@@ -1,5 +1,6 @@
 import unittest
-from account import *
+from account import Account
+from account_manager import AccountManager
 
 class TestAccount(unittest.TestCase):
     """

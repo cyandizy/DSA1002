@@ -1,6 +1,9 @@
 # Implemented from the pseudocode in Lecture 4
 
 class ListNode:
+    """
+        Stores a value and references of next and previous ListNode
+    """
     def __init__(self, value):
         self.value = value
         self.prev = None
@@ -25,6 +28,9 @@ class ListNode:
         self.next = next
 
 class LinkedList: 
+    """
+        Stores head and tail reference, and handles Linked List operations
+    """
     def __init__(self):
         self.head = None
         self.tail = None

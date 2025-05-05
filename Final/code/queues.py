@@ -1,6 +1,10 @@
 from linkedlist import LinkedList
 
 class Queue: # This class is from Practical 3 of Komes Pispol: 90035701
+    """
+        Stores items in a linked list, keeps track of number of elements,
+        and handle queue operations
+    """
     def __init__(self):
         self.list = LinkedList()
         self.num_elements = 0

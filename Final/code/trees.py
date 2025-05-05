@@ -1,5 +1,7 @@
 from queues import Queue
 
+# Improved from a previous assignment
+
 class TreeNode:
     def __init__(self, key, value):
         self.key = key
