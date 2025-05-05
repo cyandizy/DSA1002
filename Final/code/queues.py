@@ -1,3 +1,6 @@
+# Komes Pispol ID: 90035701
+
+
 from linkedlist import LinkedList
 
 class Queue: # This class is from Practical 3 of Komes Pispol: 90035701
