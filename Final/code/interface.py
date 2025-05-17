@@ -1,6 +1,6 @@
 # Improved from practical 6
 
-from account import AccountManager
+from account_manager import AccountManager 
 import readline # Allows command history
 
 
